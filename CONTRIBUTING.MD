@@ -1,21 +1,53 @@
 # Contributing
 
-Thanks for contributing!
+Thanks for contributing to WriteMyWrongs!
+
+## Tech Stack
+
+**Frontend**
+
+- [Next.js 16](https://nextjs.org/) (App Router) + React 19
+- TypeScript
+- Tailwind CSS v4
+- [shadcn/ui](https://ui.shadcn.com/) (Base UI)
+- [Tiptap](https://tiptap.dev/) — rich text editor
+- [Framer Motion](https://www.framer.com/motion/) — animation
+
+**Backend**
+
+- Next.js Server Actions + Route Handlers
+- PostgreSQL via [Supabase](https://supabase.com/) (+ Realtime, Full-Text Search)
+
+**Infrastructure**
+
+- [Vercel](https://vercel.com/) (hosting) + Supabase (DB, Auth, Storage)
+
+**Auth:** Supabase Auth · **Analytics:** [PostHog](https://posthog.com/) · **Email:** [Resend](https://resend.com/) · **Optional AI:** [OpenRouter](https://openrouter.ai/)
 
 ## Getting Started
+
+**Prerequisites:** Node.js 20.9+ and npm.
 
 1. Fork/clone the repository.
 2. Install dependencies:
 
-```bash
-npm install
-```
+   ```bash
+   npm install
+   ```
 
-3. Start the development server:
+3. Copy the environment template and fill in what you have. The app boots
+   without real credentials — features that need a service will throw a clear
+   error only when used.
 
-```bash
-npm run dev
-```
+   ```bash
+   cp .env.example .env.local
+   ```
+
+4. Start the development server:
+
+   ```bash
+   npm run dev
+   ```
 
 ## Workflow
 
@@ -44,9 +76,7 @@ git checkout -b feature/auth
 
 ### 3. Commit Changes
 
-Use clear commit messages.
-
-Examples:
+Use clear, conventional commit messages.
 
 ```text
 feat: add login page
@@ -61,14 +91,8 @@ When your work is ready:
 
 1. Push your branch.
 2. Open a Pull Request.
-3. Link the related issue.
+3. Link the related issue (e.g. `Closes #12`).
 4. Request a review.
-
-Example:
-
-```text
-Closes #12
-```
 
 ### 5. Review Process
 
@@ -82,70 +106,53 @@ Do not merge your own PR unless explicitly authorized.
 
 ## Code Style
 
-### TypeScript
-
-- Use strict typing when possible.
-- Avoid `any` unless necessary.
-
-### Formatting
-
-Run:
+Run these before opening a PR (CI enforces them):
 
 ```bash
-npm run lint
-npm run format
+npm run lint         # ESLint
+npm run typecheck    # tsc --noEmit
+npm run format       # Prettier (write)
 ```
 
-before opening a PR.
+### TypeScript
+
+- Use strict typing. Avoid `any` unless necessary.
 
 ### Naming
 
-Components:
+- Components: `UserCard.tsx`, `LoginForm.tsx`
+- Functions: `getUserById()`, `createPost()`
+- Variables: `currentUser`, `postCount`
 
-```text
-UserCard.tsx
-LoginForm.tsx
-```
+### Next.js 16 notes
 
-Functions:
+This project runs Next.js 16, which has breaking changes vs. older versions:
 
-```ts
-getUserById()
-createPost()
-```
-
-Variables:
-
-```ts
-const currentUser
-const postCount
-```
+- `params` and `searchParams` are **Promises** — `await` them in pages/layouts.
+- Request-time middleware lives in `proxy.ts` (not `middleware.ts`).
+- Turbopack is the default bundler for `dev` and `build`.
 
 ## Project Structure
 
-Example:
-
 ```text
 src/
+├── app/              # App Router routes, layouts, route handlers
 ├── components/
-├── pages/
-├── lib/
-├── hooks/
-├── types/
-└── styles/
+│   ├── ui/           # shadcn/ui primitives
+│   └── site/         # Marketing / shared site components
+├── lib/              # Clients & helpers (supabase, env, analytics, resend)
+├── hooks/            # React hooks
+└── types/            # Shared domain types
 ```
 
 Place files in the appropriate directory.
 
 ## Reporting Bugs
 
-Include:
-
-- Expected behavior
-- Actual behavior
-- Steps to reproduce
-- Screenshots if relevant
+Include: expected behavior, actual behavior, steps to reproduce, and
+screenshots if relevant.
 
 ## Questions
 
-If you're unsure about an implementation, ask in the team Discord before spending significant time on it.
+If you're unsure about an implementation, ask in the team Discord before
+spending significant time on it.
