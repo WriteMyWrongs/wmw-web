@@ -1,17 +1,12 @@
 import { Features } from "@/components/site/features";
-import { Footer } from "@/components/site/footer";
 import { Hero } from "@/components/site/hero";
-import { Navbar } from "@/components/site/navbar";
+import { SiteShell } from "@/components/site/site-shell";
 
 export default function HomePage() {
   return (
-    <>
-      <Navbar />
-      <main className="flex-1">
-        <Hero />
-        <Features />
-      </main>
-      <Footer />
-    </>
+    <SiteShell>
+      <Hero />
+      <Features />
+    </SiteShell>
   );
 }
