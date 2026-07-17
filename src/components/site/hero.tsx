@@ -72,7 +72,9 @@ export function Hero() {
           className="text-muted-foreground max-w-xl text-lg text-balance"
         >
           WriteMyWrongs is where young writers publish their work, trade honest
-          feedback, and get a little better with every draft. No red pen. Well, actually <span className="doodle-underline">only the friendly kind.</span>
+          feedback, and get a little better with every draft. No red pen. Well,
+          actually{" "}
+          <span className="doodle-underline">only the friendly kind.</span>
         </motion.p>
 
         <motion.div
