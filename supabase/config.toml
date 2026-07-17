@@ -1,0 +1,26 @@
+# Supabase local development config. Used by the Supabase CLI:
+#   supabase start   — run the full stack locally (requires Docker)
+#   supabase db push — apply migrations in supabase/migrations/
+# Unspecified settings fall back to CLI defaults.
+
+project_id = "wmw-web"
+
+[api]
+port = 54321
+schemas = ["public"]
+max_rows = 1000
+
+[db]
+port = 54322
+major_version = 17
+
+[studio]
+port = 54323
+
+[auth]
+site_url = "http://localhost:3000"
+additional_redirect_urls = ["http://localhost:3000/**"]
+
+[auth.email]
+enable_signup = true
+enable_confirmations = false

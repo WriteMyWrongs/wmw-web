@@ -118,7 +118,16 @@ appreciations, not likes.
 ## Row Level Security
 
 RLS is enabled on every table; the service-role key bypasses it for admin
-jobs. Summary:
+jobs.
+
+Note that RLS is only half the story: current Supabase images grant the API
+roles (`anon`, `authenticated`, `service_role`) **no DML on migration-created
+tables** by default, so `20260717120000_grant_api_roles.sql` adds explicit
+least-privilege grants (anon: read-only; authenticated: the DML the policies
+allow; service_role: everything). Grants are the ceiling, policies pick the
+rows. New tables in future migrations need their own grants.
+
+Policy summary:
 
 | Table | Read | Write |
 | --- | --- | --- |
