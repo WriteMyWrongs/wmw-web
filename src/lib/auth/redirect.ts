@@ -1,8 +1,15 @@
-/**
- * Where a user lands after authenticating. Becomes "/dashboard" once the
- * dashboard ships (issue #25); "/" is the honest placeholder until then.
- */
-export const POST_AUTH_REDIRECT = "/";
+/** Path prefixes that require an authenticated user (guarded in proxy.ts). */
+export const PROTECTED_PREFIXES = ["/dashboard", "/write", "/settings"];
+
+/** Where a user lands after authenticating. */
+export const POST_AUTH_REDIRECT = "/dashboard";
+
+/** True when a pathname falls inside a protected area. */
+export function isProtectedPath(pathname: string): boolean {
+  return PROTECTED_PREFIXES.some(
+    (prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`),
+  );
+}
 
 /**
  * Guard against open redirects. Only same-origin relative paths are allowed
