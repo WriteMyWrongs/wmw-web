@@ -243,3 +243,61 @@
   background-size: 22px 22px;
   background-position: -1px -1px;
 }
+
+/* Tiptap editor content */
+.editor-content {
+  line-height: 1.7;
+}
+.editor-content:focus {
+  outline: none;
+}
+.editor-content p {
+  margin: 0.75em 0;
+}
+.editor-content h1,
+.editor-content h2,
+.editor-content h3 {
+  font-family: var(--font-display), serif;
+  font-weight: 800;
+  color: var(--brand-navy);
+  margin: 1.2em 0 0.4em;
+  line-height: 1.2;
+}
+.dark .editor-content h1,
+.dark .editor-content h2,
+.dark .editor-content h3 {
+  color: var(--foreground);
+}
+.editor-content h2 {
+  font-size: 1.6rem;
+}
+.editor-content ul,
+.editor-content ol {
+  margin: 0.75em 0;
+  padding-left: 1.5rem;
+}
+.editor-content ul {
+  list-style: disc;
+}
+.editor-content ol {
+  list-style: decimal;
+}
+.editor-content blockquote {
+  border-left: 3px solid
+    color-mix(in oklch, var(--brand-steel) 60%, transparent);
+  padding-left: 1rem;
+  color: var(--muted-foreground);
+  font-style: italic;
+  margin: 1em 0;
+}
+.editor-content strong {
+  font-weight: 700;
+}
+/* Placeholder shown when the editor is empty */
+.editor-content p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  color: var(--muted-foreground);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}

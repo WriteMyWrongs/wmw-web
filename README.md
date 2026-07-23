@@ -52,6 +52,8 @@ database and `npm run db:types` to regenerate the TypeScript types.
 | `npm run lint`      | ESLint                                          |
 | `npm run typecheck` | Type-check with `tsc`                           |
 | `npm run format`    | Format with Prettier                            |
+| `npm run test`      | Run unit tests (Vitest)                         |
+| `npm run test:watch`| Run tests in watch mode                         |
 | `npm run db:start`  | Run Supabase locally (Docker)                   |
 | `npm run db:stop`   | Stop the local Supabase stack                   |
 | `npm run db:reset`  | Recreate the local DB from migrations           |
